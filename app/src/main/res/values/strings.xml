@@ -11,6 +11,8 @@
     <string name="get_started">Get Started</string>
     <string name="sign_in">Sign in</string>
     <string name="walk_through_text"> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

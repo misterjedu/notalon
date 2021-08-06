@@ -4,27 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.composables.*
-import ng.com.jedun.notalon.ui.theme.text_normal
+import ng.com.jedun.notalon.ui.theme.NotalonTheme
 
 class WalkThroughFragment : Fragment() {
 
@@ -36,56 +33,65 @@ class WalkThroughFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_walkthrough, container, false)
         view.findViewById<ComposeView>(R.id.fragment_walk_through_compose_view).setContent {
 
-            Column(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                Row(
+            NotalonTheme {
+                Column(
                     modifier = Modifier
-                        .fillMaxHeight(0.7f)
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                        .padding(20.dp)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceBetween
                 ) {
-
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                    Row(
+                        modifier = Modifier
+                            .fillMaxHeight(0.7f)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
                     ) {
-                        val image: Painter = painterResource(id = R.drawable.walkthrough_img_holder)
-                        Image(
-                            painter = image,
-                            contentDescription = "",
-                            modifier = Modifier.padding(vertical = 20.dp)
-                        )
-                        Text(
-                            text = stringResource(R.string.walk_through_text),
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.body1,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 20.dp),
-                        )
-                    }
-                }
 
-                Row {
-                    Column {
-                        NotalonButton(
-                            onClick = { Hello() },
-                            buttonType = NotalonButtonType.MATCHPARENT,
-                            text = stringResource(R.string.get_started)
-                        )
-                        Text(
-                            text = stringResource(R.string.sign_in),
-                            color = MaterialTheme.colors.primary,
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.body1,
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 20.dp),
-                        )
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Bottom
+                        ) {
+                            val image: Painter =
+                                painterResource(id = R.drawable.walkthrough_img_holder)
+                            Image(
+                                painter = image,
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .padding(vertical = 20.dp)
+                                    .fillMaxHeight(0.7f),
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(
+                                text = stringResource(R.string.walk_through_text),
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.body1,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 20.dp),
+                            )
+                        }
+                    }
+
+                    Row {
+                        Column {
+                            NotalonButton(
+                                onClick = { navigateToLoginFragment() },
+                                buttonType = NotalonButtonType.MATCHPARENT,
+                                text = stringResource(R.string.get_started)
+                            )
+                            Text(
+                                text = stringResource(R.string.sign_in),
+                                color = MaterialTheme.colors.primary,
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.body1,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 20.dp),
+                            )
+                        }
                     }
                 }
             }
@@ -94,7 +100,7 @@ class WalkThroughFragment : Fragment() {
     }
 
 
-    fun Hello() {
-        Toast.makeText(requireContext(), "Hello", Toast.LENGTH_SHORT).show()
+    private fun navigateToLoginFragment() {
+        findNavController().navigate(R.id.loginFragment)
     }
 }

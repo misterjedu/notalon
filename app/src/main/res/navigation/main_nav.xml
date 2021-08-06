@@ -10,4 +10,9 @@
         android:name="ng.com.jedun.notalon.ui.WalkThroughFragment"
         android:label="WalkThroughFragment"
         tools:layout="@layout/fragment_walkthrough" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ng.com.jedun.notalon.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

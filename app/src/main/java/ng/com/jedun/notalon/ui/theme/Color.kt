@@ -14,6 +14,9 @@ val notalon_green = Color(0xFF00A51A)
 val notalon_red = Color(0xFFFF3D3D)
 val notalon_grey = Color(0xFF91919F)
 val notalon_light_grey = Color(0xFFF0F0F0)
-var notalon_black = Color(0xFF000000)
+val notalon_black = Color(0xFF000000)
+val notalon_white = Color(0xFFFFFFFF)
+val notalon_text_field_unfocused = Color(0xFFFAFAFA)
+val notalon_text_field_unfocused_stroke = Color(0xFFF0F0F0)
 
 
