@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="notalon_purple">#7F3DFF</color>
+    <color name="notalon_purple_variant">#521ABD</color>
+    <color name="notalon_yellow">#FCAC12</color>
+    <color name="notalon_yellow_variant">#BB800E</color>
+    <color name="notalon_green">#00A51A</color>
+    <color name="notalon_red">#FF3D3D</color>
+    <color name="notalon_grey">#91919F</color>
+    <color name="notalon_light_grey">#F0F0F0</color>
+
+
 </resources>
