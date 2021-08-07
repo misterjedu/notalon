@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/walkThroughFragment"
-        android:name="ng.com.jedun.notalon.ui.WalkThroughFragment"
+        android:name="ng.com.jedun.notalon.ui.auth.WalkThroughFragment"
         android:label="WalkThroughFragment"
         tools:layout="@layout/fragment_walkthrough" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="ng.com.jedun.notalon.ui.LoginFragment"
+        android:name="ng.com.jedun.notalon.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 </navigation>

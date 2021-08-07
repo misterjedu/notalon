@@ -1,4 +1,4 @@
-package ng.com.jedun.notalon.ui
+package ng.com.jedun.notalon.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -83,7 +83,7 @@ class WalkThroughFragment : Fragment() {
                                 text = stringResource(R.string.get_started)
                             )
                             Text(
-                                text = stringResource(R.string.sign_in),
+                                text = stringResource(R.string.log_in),
                                 color = MaterialTheme.colors.primary,
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.body1,

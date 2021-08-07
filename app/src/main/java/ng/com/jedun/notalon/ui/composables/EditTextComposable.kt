@@ -1,84 +1,136 @@
 package ng.com.jedun.notalon.ui.composables
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Close
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import ng.com.jedun.domain.Validator
+import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.theme.*
 
 @Composable
-fun SimpleOutlinedTextFieldSample() {
-//    var text by remember { mutableStateOf("") }
-//
-//    OutlinedTextField(
-//        modifier = Modifier
-//            .border(
-//                width = 0.5.dp,
-//                shape = RoundedCornerShape(34.dp),
-//                brush = Brush.horizontalGradient(listOf(Color.Green, Color.Green))
-//            )
-//            .fillMaxWidth(),
-//        value = text,
-//        onValueChange = { text = it },
-//        label = { Text("Email") },
-//        placeholder = {
-//            "absc@gmail.com"
-//        },
-//    )
+fun SimpleOutlinedTextFieldSample(
+    label: String,
+    value: String,
+    isPassword: Boolean = false,
+    placeholder: String = "",
+    keyboardType: KeyboardType,
+    validator: Validator,
+    onValueChange: (String) -> Unit,
+) {
     Column(modifier = Modifier.padding(vertical = 20.dp)) {
-        var textState by remember { mutableStateOf("") }
-        val maxLength = 110
-        val lightBlue = Color(0xffd8e6ff)
-        val blue = Color(0xff76a9ff)
+
+        var passwordVisibility by remember { mutableStateOf(false) }
+        val icon = if (passwordVisibility) {
+            painterResource(id = R.drawable.design_ic_visibility)
+        } else {
+            painterResource(id = R.drawable.design_ic_visibility_off)
+        }
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = textState,
-            label = { Text(text = "Email") },
+            value = value,
+            label = { Text(text = label) },
+            placeholder = { Text(text = placeholder) },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 textColor = MaterialTheme.colors.primary,
-                backgroundColor = lightBlue,
+                backgroundColor = MaterialTheme.colors.primary,
                 cursorColor = MaterialTheme.colors.primary,
-                disabledLabelColor = lightBlue,
+                disabledLabelColor = notalon_grey,
                 focusedBorderColor = MaterialTheme.colors.primary,
                 unfocusedBorderColor = notalon_text_field_unfocused_stroke,
                 focusedLabelColor = notalon_grey,
-                unfocusedLabelColor = notalon_grey
+                unfocusedLabelColor = notalon_grey,
+                placeholderColor = Color.Green,
+                errorLabelColor = Color.Red
             ),
-            onValueChange = {
-                if (it.length <= maxLength) textState = it
-            },
+            onValueChange = onValueChange,
             shape = RoundedCornerShape(24.dp),
             singleLine = true,
-//            trailingIcon = {
-//                if (textState.isNotEmpty()) {
-//                    IconButton(onClick = { textState = "" }) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.Close,
-//                            contentDescription = null
-//                        )
-//                    }
-//                }
-//            }
+            trailingIcon = {
+                if (isPassword) {
+                    IconButton(onClick = {
+                        passwordVisibility = !passwordVisibility
+                    }) {
+                        Icon(
+                            painter = icon,
+                            contentDescription = ""
+                        )
+                    }
+                }
+            },
+            visualTransformation = if (passwordVisibility && isPassword) PasswordVisualTransformation()
+            else VisualTransformation.None,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType
+            ),
+            isError = (!validator.isValidated && value.isNotBlank()),
         )
-//        Text(
-//            text = "${textState.length} / $maxLength",
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(top = 4.dp),
-//            textAlign = TextAlign.End,
-//            color = blue
-//        )
+        if (!validator.isValidated && value.isNotBlank()) {
+            Text(
+                text = validator.message,
+                color = MaterialTheme.colors.error,
+                style = MaterialTheme.typography.caption,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
     }
 }
+
+
+
+//Text(
+//text = "Caption",
+//modifier = Modifier
+//.fillMaxWidth()
+//.padding(bottom = 4.dp),
+//textAlign = TextAlign.Start,
+//color = blue
+//)
+//TextField(
+//modifier = Modifier.fillMaxWidth(),
+//value = textState,
+//colors = TextFieldDefaults.textFieldColors(
+//backgroundColor = lightBlue,
+//cursorColor = Color.Black,
+//disabledLabelColor = lightBlue,
+//focusedIndicatorColor = Color.Transparent,
+//unfocusedIndicatorColor = Color.Transparent
+//),
+//onValueChange = {
+//    if (it.length <= maxLength) textState = it
+//},
+//shape = RoundedCornerShape(8.dp),
+//singleLine = true,
+//trailingIcon = {
+//    if (textState.isNotEmpty()) {
+//        IconButton(onClick = { textState = "" }) {
+//            Icon(
+//                imageVector = Icons.Outlined.Close,
+//                contentDescription = null
+//            )
+//        }
+//    }
+//}
+//)
+//Text(
+//text = "${textState.length} / $maxLength",
+//modifier = Modifier
+//.fillMaxWidth()
+//.padding(top = 4.dp),
+//textAlign = TextAlign.End,
+//color = blue
+//)
