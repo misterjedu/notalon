@@ -4,15 +4,6 @@ import ng.com.jedun.domain.Validator
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-//Validate Pin
-fun validatePin(pin: String): Validator {
-    return if (pin.length >= 6) {
-        Validator("", true)
-    } else {
-        Validator("", false)
-    }
-}
-
 fun validatePassword(password: String): Validator {
     return if (password.length >= 6) {
         Validator("", true)
@@ -31,5 +22,44 @@ fun validateEmail(email: String): Validator {
         Validator("", true)
     } else {
         Validator("Invalid Email", false)
+    }
+}
+
+/** Validating phone number field */
+fun validatePhoneNumber(number: String): Validator {
+    val pattern: Pattern = Pattern.compile("[789][01][0-9]{8}")
+    val matcher: Matcher = pattern.matcher(number.trim())
+    val matchFound = matcher.matches()
+    return if (matchFound) {
+        Validator("", true)
+    } else {
+        Validator("Invalid Phone Number", false)
+    }
+}
+
+
+fun validateFullName(name: String): Validator {
+    val fullName = name.split(" ")
+    var firstName = ""
+    var lastName = ""
+
+    if (fullName.size >= 2) {
+        firstName = fullName[0]
+        lastName = fullName[1]
+    }
+    return if (firstName.isNotEmpty() && lastName.isNotEmpty()) {
+        Validator("", true)
+    } else {
+        Validator("Please, enter full name separated by a space", false)
+    }
+}
+
+
+/** Validating Name field */
+fun validateUserName(name: String): Validator {
+    return if (name.trim().length >= 3) {
+        Validator("", true)
+    } else {
+        Validator("Username must have 3 or more characters", false)
     }
 }

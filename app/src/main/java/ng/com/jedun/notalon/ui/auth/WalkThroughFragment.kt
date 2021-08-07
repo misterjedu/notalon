@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -15,6 +16,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -22,8 +25,9 @@ import androidx.navigation.fragment.findNavController
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.composables.*
 import ng.com.jedun.notalon.ui.theme.NotalonTheme
+import ng.com.jedun.notalon.ui.theme.text_normal
 
-class WalkThroughFragment : Fragment() {
+class WalkThroughFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,15 +82,19 @@ class WalkThroughFragment : Fragment() {
                     Row {
                         Column {
                             NotalonButton(
-                                onClick = { navigateToLoginFragment() },
+                                onClick = { findNavController().navigate(R.id.signupFragment) },
                                 buttonType = NotalonButtonType.MATCHPARENT,
                                 text = stringResource(R.string.get_started)
                             )
-                            Text(
-                                text = stringResource(R.string.log_in),
-                                color = MaterialTheme.colors.primary,
-                                textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.body1,
+
+                            ClickableText(
+                                text = AnnotatedString(stringResource(R.string.log_in)),
+                                onClick = { findNavController().navigate(R.id.loginFragment) },
+                                style = TextStyle(
+                                    color = MaterialTheme.colors.primary,
+                                    fontSize = text_normal,
+                                    textAlign = TextAlign.Center,
+                                ),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 20.dp),
@@ -103,4 +111,10 @@ class WalkThroughFragment : Fragment() {
     private fun navigateToLoginFragment() {
         findNavController().navigate(R.id.loginFragment)
     }
+
+    override fun onClick(v: View?) {
+        TODO("Not yet implemented")
+    }
+
+
 }

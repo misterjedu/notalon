@@ -15,4 +15,8 @@
         android:name="ng.com.jedun.notalon.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="ng.com.jedun.notalon.ui.auth.SignupFragment"
+        android:label="SignupFragment" />
 </navigation>

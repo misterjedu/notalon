@@ -31,9 +31,10 @@ fun SimpleOutlinedTextFieldSample(
     validator: Validator,
     onValueChange: (String) -> Unit,
 ) {
-    Column(modifier = Modifier.padding(vertical = 20.dp)) {
+    Column(modifier = Modifier.padding(vertical = 10.dp)) {
 
         var passwordVisibility by remember { mutableStateOf(false) }
+
         val icon = if (passwordVisibility) {
             painterResource(id = R.drawable.design_ic_visibility)
         } else {
@@ -74,11 +75,14 @@ fun SimpleOutlinedTextFieldSample(
             },
             visualTransformation = if (passwordVisibility && isPassword) PasswordVisualTransformation()
             else VisualTransformation.None,
+
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType
             ),
+
             isError = (!validator.isValidated && value.isNotBlank()),
         )
+
         if (!validator.isValidated && value.isNotBlank()) {
             Text(
                 text = validator.message,
@@ -89,7 +93,6 @@ fun SimpleOutlinedTextFieldSample(
         }
     }
 }
-
 
 
 //Text(
