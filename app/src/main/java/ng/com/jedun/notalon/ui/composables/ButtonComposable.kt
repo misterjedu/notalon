@@ -18,7 +18,7 @@ fun NotalonButton(
     onClick: () -> Unit,
     buttonType: NotalonButtonType = NotalonButtonType.MATCHPARENT,
     enabled: Boolean = true,
-    text: String
+    text: String,
 ) {
 
     var modifier: Modifier = Modifier

@@ -21,9 +21,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
+import ng.com.jedun.domain.FieldValidator
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.composables.*
 import ng.com.jedun.notalon.ui.theme.NotalonTheme
+import ng.com.jedun.notalon.util.validateMultipleTextFields
 import ng.com.jedun.notalon.util.validateEmail
 import ng.com.jedun.notalon.util.validatePassword
 
@@ -39,8 +41,16 @@ class LoginFragment : Fragment() {
 
         view.findViewById<ComposeView>(R.id.fragment_login_compose_view).setContent {
 
-            var email by rememberSaveable { mutableStateOf("") }
-            var password by rememberSaveable { mutableStateOf("") }
+            var email by rememberSaveable { mutableStateOf(FieldValidator()) }
+            var password by rememberSaveable { mutableStateOf(FieldValidator()) }
+
+            var allFieldsValidated by rememberSaveable { mutableStateOf(false) }
+
+            val allFields: Array<FieldValidator> = arrayOf(
+                email, password
+            )
+
+            validateMultipleTextFields(allFields)
 
             NotalonTheme {
                 Column(
@@ -68,24 +78,39 @@ class LoginFragment : Fragment() {
                                 //Email
                                 SimpleOutlinedTextFieldSample(
                                     "Email",
-                                    email,
+                                    email.message.trim(),
                                     placeholder = "abc@gmail.com",
                                     keyboardType = KeyboardType.Email,
-                                    validator = validateEmail(email)
+                                    validator = validateEmail(email.message)
                                 ) {
-                                    email = it
+                                    email =
+                                        if (validateEmail(email.message).isValidated) FieldValidator(
+                                            it, true
+                                        )
+                                        else FieldValidator(it, false)
+
+                                    allFieldsValidated = validateMultipleTextFields(
+                                        arrayOf(email, password)
+                                    )
                                 }
 
                                 //Password
                                 SimpleOutlinedTextFieldSample(
                                     "Password",
-                                    password,
+                                    password.message,
                                     true,
                                     placeholder = "*********",
                                     keyboardType = KeyboardType.Password,
-                                    validator = validatePassword(password)
+                                    validator = validatePassword(password.message)
                                 ) {
-                                    password = it
+                                    password =
+                                        if (validatePassword(password.message).isValidated) FieldValidator(
+                                            it, true
+                                        ) else FieldValidator(it, false)
+
+                                    allFieldsValidated = validateMultipleTextFields(
+                                        arrayOf(email, password)
+                                    )
                                 }
 
                                 //Forgot password
@@ -101,9 +126,7 @@ class LoginFragment : Fragment() {
                         }
                     }
 
-
                     Column(modifier = Modifier.padding(20.dp)) {
-
                         NotalonButton(
                             onClick = {
                                 Toast.makeText(
@@ -113,6 +136,7 @@ class LoginFragment : Fragment() {
                                 ).show()
                             },
                             buttonType = NotalonButtonType.MATCHPARENT,
+                            enabled = allFieldsValidated,
                             text = stringResource(R.string.log_in)
                         )
 
@@ -126,9 +150,9 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
         return view
     }
+
 
 }
 

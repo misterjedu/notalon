@@ -2,22 +2,17 @@ package ng.com.jedun.notalon.ui.composables
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.*
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import ng.com.jedun.domain.Validator
+import ng.com.jedun.domain.FieldValidator
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.theme.*
 
@@ -28,7 +23,7 @@ fun SimpleOutlinedTextFieldSample(
     isPassword: Boolean = false,
     placeholder: String = "",
     keyboardType: KeyboardType,
-    validator: Validator,
+    validator: FieldValidator,
     onValueChange: (String) -> Unit,
 ) {
     Column(modifier = Modifier.padding(vertical = 10.dp)) {

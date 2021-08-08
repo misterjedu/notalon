@@ -42,6 +42,7 @@ class SignupFragment : Fragment() {
             var password by rememberSaveable { mutableStateOf("") }
             var phoneNumber by rememberSaveable { mutableStateOf("") }
 
+
             NotalonTheme {
                 Column(
                     modifier = Modifier
@@ -158,7 +159,6 @@ class SignupFragment : Fragment() {
                     }
                 }
             }
-
 
 
         }
