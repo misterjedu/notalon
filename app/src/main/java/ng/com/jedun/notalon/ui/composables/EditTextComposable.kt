@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import ng.com.jedun.domain.FieldValidator
+import ng.com.jedun.notalon.domain.FieldValidator
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.theme.*
 

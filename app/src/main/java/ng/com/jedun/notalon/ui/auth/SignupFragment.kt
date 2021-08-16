@@ -140,14 +140,10 @@ class SignupFragment : Fragment() {
 
                         NotalonButton(
                             onClick = {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Hello",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                findNavController().navigate(R.id.emailVerificationFragment)
                             },
                             buttonType = NotalonButtonType.MATCHPARENT,
-                            text = stringResource(R.string.log_in)
+                            text = stringResource(R.string.sign_up)
                         )
 
                         AnnotatedClickableText(

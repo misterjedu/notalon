@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
-import ng.com.jedun.domain.FieldValidator
+import ng.com.jedun.notalon.domain.FieldValidator
 import ng.com.jedun.notalon.R
 import ng.com.jedun.notalon.ui.composables.*
 import ng.com.jedun.notalon.ui.theme.NotalonTheme
@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_login, container, false)
+
 
         view.findViewById<ComposeView>(R.id.fragment_login_compose_view).setContent {
 
@@ -129,9 +130,10 @@ class LoginFragment : Fragment() {
                     Column(modifier = Modifier.padding(20.dp)) {
                         NotalonButton(
                             onClick = {
+
                                 Toast.makeText(
                                     requireContext(),
-                                    "Hello",
+                                    email.message + password.message,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
@@ -146,6 +148,7 @@ class LoginFragment : Fragment() {
                         ) {
                             Toast.makeText(requireContext(), "Span", Toast.LENGTH_SHORT).show()
                         }
+
                     }
                 }
             }

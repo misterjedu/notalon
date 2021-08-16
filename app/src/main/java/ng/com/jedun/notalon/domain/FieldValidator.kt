@@ -1,4 +1,4 @@
-package ng.com.jedun.domain
+package ng.com.jedun.notalon.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

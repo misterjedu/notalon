@@ -2,7 +2,7 @@ package ng.com.jedun.notalon.util
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import ng.com.jedun.domain.FieldValidator
+import ng.com.jedun.notalon.domain.FieldValidator
 
 
 fun Fragment.toast(message: String) {

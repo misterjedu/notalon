@@ -1,6 +1,6 @@
 package ng.com.jedun.notalon.util
 
-import ng.com.jedun.domain.FieldValidator
+import ng.com.jedun.notalon.domain.FieldValidator
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 

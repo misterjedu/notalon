@@ -11,6 +11,7 @@
     <string name="get_started">Get Started</string>
     <string name="log_in">Login</string>
     <string name="sign_up">Sign up</string>
+    <string name="email_verification">Email Verfication</string>
     <string name="walk_through_text"> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_have_account_sign_up">Don\'t have an account? </string>

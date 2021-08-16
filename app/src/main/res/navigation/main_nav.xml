@@ -18,5 +18,11 @@
     <fragment
         android:id="@+id/signupFragment"
         android:name="ng.com.jedun.notalon.ui.auth.SignupFragment"
-        android:label="SignupFragment" />
+        android:label="SignupFragment"
+        tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/emailVerificationFragment"
+        android:name="ng.com.jedun.notalon.ui.auth.EmailVerificationFragment"
+        android:label="EmailVerificationFragment"
+        tools:layout="@layout/fragment_email_verification" />
 </navigation>
